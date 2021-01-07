@@ -1,13 +1,13 @@
 package com.javaudemy.utils;
 
-import com.javaudemy.exception.UnsupportedMathOperationException;
+import com.javaudemy.exception.ResourceNotFoundException;
 
 public class MathUtils {
 
 	
 	public void validateUnsupportableNumbers(String numberOne, String numberTwo) {
 		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-			throw new UnsupportedMathOperationException("Please, enter a valid number!");
+			throw new ResourceNotFoundException("Please, enter a valid number!");
 		}
 	}
 	

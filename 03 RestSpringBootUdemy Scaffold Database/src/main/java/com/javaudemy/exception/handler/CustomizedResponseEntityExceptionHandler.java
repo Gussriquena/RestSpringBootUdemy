@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 import com.javaudemy.exception.ExceptionResponse;
-import com.javaudemy.exception.UnsupportedMathOperationException;
+import com.javaudemy.exception.ResourceNotFoundException;
 
 @ControllerAdvice
 @RestController
@@ -27,7 +27,7 @@ public class CustomizedResponseEntityExceptionHandler {
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@ExceptionHandler(UnsupportedMathOperationException.class)
+	@ExceptionHandler(ResourceNotFoundException.class)
 	public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(), 
