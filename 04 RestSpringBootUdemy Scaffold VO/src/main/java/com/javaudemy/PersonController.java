@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaudemy.data.vo.PersonVO;
-import com.javaudemy.services.PersonVOServices;
+import com.javaudemy.services.PersonServices;
 
 @RestController
 @RequestMapping("/PersonVO")
-public class PersonVOController {
+public class PersonController {
 	
 	@Autowired
-	private PersonVOServices services;
+	private PersonServices services;
 	
 	@GetMapping
 	public List<PersonVO> findAll() {
