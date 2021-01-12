@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javaudemy.data.vo.v1.PersonVO;
 import com.javaudemy.services.PersonServices;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="Person Endpoint", description="A simple description for Person Endpoint", tags="Person Endpoint")
 @RestController
 @RequestMapping("api/person/v1")
 public class PersonController {
@@ -26,6 +30,7 @@ public class PersonController {
 	@Autowired
 	private PersonServices services;
 	
+	@ApiOperation(value = "Find all person recorded")
 	@GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
 	public List<PersonVO> findAll() {
 		List<PersonVO> persons =  services.findAll();
@@ -33,6 +38,7 @@ public class PersonController {
 		return persons;
 	}
 	
+	@ApiOperation(value = "Find a person by id")
 	@GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO findById(@PathVariable("id") Long id) {
 		PersonVO personVO = services.findById(id);
@@ -40,6 +46,7 @@ public class PersonController {
 		return personVO;
 	}
 	
+	@ApiOperation(value = "Record a new person")
 	@PostMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
 			consumes = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO create(@RequestBody PersonVO person){
@@ -48,6 +55,7 @@ public class PersonController {
 		return personVO;
 	}
 	
+	@ApiOperation(value = "Update a person passing id")
 	@PutMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
 			consumes = {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO update(@RequestBody PersonVO person){
@@ -56,6 +64,7 @@ public class PersonController {
 		return personVO;
 	}
 	
+	@ApiOperation(value = "Delete a person from database")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		services.delete(id);
